@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+
+import {  Route, Routes } from 'react-router-dom';
 import './App.css';
+import Navbarr from './components/Navbar';
+import Home from './Pages/Home';
+import Error from './Pages/Error';
+import Admin from './Pages/Admin';
+import Profile from './Pages/Profile';
+import { useState } from 'react';
+import Users from './Pages/Users';
+
+
 
 function App() {
+  const[isAuth,setAuth]=useState(true)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Navbarr/>
+    <Routes>
+      <Route exact path='/'element={<Home/>} />
+      <Route path='/*' element={<Error/>}/>
+      {isAuth?<Route path='/admins' element={<Admin/>}/> : <Route path='/*' element={<Error/>}/>}
+      <Route path='/profile/:id' element={<Profile/>}/>
+      <Route path='/users' element={<Users/>}/>
+      
+      </Routes>
+
+
+
+
+    
     </div>
   );
 }
