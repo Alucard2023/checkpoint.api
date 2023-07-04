@@ -10,7 +10,7 @@ const Profile = () => {
   const[user,setUser] = useState({});
   useEffect(()=> {
     axios
-    .get(`https://jsonplaceholder.typicode.com/users/? id=${id}`)
+    .get(`https://jsonplaceholder.typicode.com/users/?id=${id}`)
     .then((res)=>setUser(res.data[0]))
     .catch((err)=>console.log(err));
     
